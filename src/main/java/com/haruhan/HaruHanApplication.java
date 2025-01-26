@@ -8,5 +8,5 @@ public class HaruHanApplication {
     public static void main(String[] args) {
         SpringApplication.run(HaruHanApplication.class, args);
     }
-
+//cicd 테스트
 }
