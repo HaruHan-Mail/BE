@@ -8,5 +8,5 @@ public class HaruHanApplication {
     public static void main(String[] args) {
         SpringApplication.run(HaruHanApplication.class, args);
     }
-//stage view 설치
+    //stage view 설치, 테스트
 }
