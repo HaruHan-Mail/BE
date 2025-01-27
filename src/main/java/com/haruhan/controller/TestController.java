@@ -10,6 +10,7 @@ public class TestController {
 
     @GetMapping
     public String Hi() {
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@log@@@@@@@@@@@@@@@@@@@@@@@@@");
         return "hi";
     }
 }
