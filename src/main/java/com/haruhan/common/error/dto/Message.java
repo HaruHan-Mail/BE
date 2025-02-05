@@ -12,4 +12,5 @@ public record Message(int stateCode, String message, Object data) {
     public Message(StatusCode statusCode){
         this(statusCode.getStatusCode(), statusCode.getMessage(), DEFAULT_RESPONSE);
     }
+
 }
