@@ -1,10 +1,10 @@
 package com.haruhan.feedback.controller;
 
 import com.haruhan.common.error.StatusCode;
+import com.haruhan.common.error.dto.Message;
 import com.haruhan.feedback.dto.PostFeedbackDto;
 import com.haruhan.feedback.service.FeedbackService;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +19,6 @@ public class FeedbackController {
 
     @PostMapping("/")
     public ResponseEntity<Message> receiveFeedback(@RequestBody PostFeedbackDto postFeedbackDto) {
-        return ResponseEntity.ok(new Message(StatusCode.OK, feedbackService.saveFeedback(postFeedbackDto)));
+        return ResponseEntity.ok(new Message(StatusCode.OK));
     }
 }
