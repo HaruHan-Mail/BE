@@ -3,7 +3,9 @@ package com.haruhan.feedback.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.repository.Temporal;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,7 +22,7 @@ public class Feedback {
     private String feedback_content;
 
     @Column(name = "create_at", nullable = false)
-    private Date create_at;
+    private LocalDateTime create_at = LocalDateTime.now();
 
     public Feedback(String feedback_content) {
         this.feedback_content = feedback_content;

@@ -1,13 +1,10 @@
 package com.haruhan.common.error;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class CustomException extends RuntimeException {
     private final StatusCode statusCode;
-
-    public CustomException(StatusCode statusCode) {
-        super(statusCode.getMessage());
-        this.statusCode = statusCode;
-    }
 }

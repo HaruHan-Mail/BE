@@ -1,4 +1,8 @@
 package com.haruhan.feedback.dto;
 
-public record PostFeedbackDto(String feedback_content) {
-}
+import jakarta.validation.constraints.NotNull;
+
+public record PostFeedbackDto(
+    @NotNull(message = "피드백 내용은 필수입니다.")
+    String feedback_content
+) {}
