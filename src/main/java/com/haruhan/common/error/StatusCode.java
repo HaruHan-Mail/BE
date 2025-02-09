@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 public enum StatusCode {
     OK(200, "요청이 성공적으로 처리되었습니다.", HttpStatus.OK),
     ALREADY_EXIST(400, "이미 존재하는 이메일입니다.", HttpStatus.BAD_REQUEST),
+    NOT_EXIST(400, "데이터가 존재하지 않습니다.", HttpStatus.BAD_REQUEST),
     NOT_FOUND(404, "존재하지 않는 데이터입니다.", HttpStatus.NOT_FOUND),
     INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 

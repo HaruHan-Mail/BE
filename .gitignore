@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### 환경 변수 파일 (.env) 추가 ###
-.env
+*.env
