@@ -1,5 +1,7 @@
 package com.haruhan.user.controller;
 
+import com.haruhan.common.error.StatusCode;
+import com.haruhan.common.error.dto.Message;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +19,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/subscribe")
-    public ResponseEntity<String> subscribe(@RequestBody UserRequestDto requestDto) {
-        String responseMessage = userService.subscribe(requestDto);
-        return ResponseEntity.ok(responseMessage);
+    public ResponseEntity<Message> subscribe(@RequestBody UserRequestDto requestDto) {
+        userService.subscribe(requestDto);
+        return ResponseEntity.ok(new Message(StatusCode.OK));
     }
 }
