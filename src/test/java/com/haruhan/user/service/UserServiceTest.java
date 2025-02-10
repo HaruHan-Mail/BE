@@ -43,13 +43,10 @@ class UserServiceTest {
         // Given: 이메일이 없는 상태(Mock 설정)
         when(userRepository.findByEmail(requestDto.getEmail())).thenReturn(Optional.empty());
 
-        // When: 구독 요청
-        String result = userService.subscribe(requestDto);
+        // When: 구독 요청 (void 메서드이므로 반환값 확인 X)
+        assertDoesNotThrow(() -> userService.subscribe(requestDto));
 
-        // Then: 정상적으로 구독 완료 메시지가 반환되는지 확인
-        assertEquals("구독이 완료되었습니다.", result);
-
-        // 저장이 한 번 호출되었는지 검증
+        // Then: 저장이 한 번 호출되었는지 검증
         verify(userRepository, times(1)).save(any(User.class));
     }
 
