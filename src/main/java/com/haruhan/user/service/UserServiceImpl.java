@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public String subscribe(UserRequestDto requestDto) {
+    public void subscribe(UserRequestDto requestDto) {
         // 이미 가입된 이메일인지 확인
         if (userRepository.findByEmail(requestDto.getEmail()).isPresent()) {
             throw new CustomException(StatusCode.ALREADY_EXIST);
@@ -30,6 +30,5 @@ public class UserServiceImpl implements UserService {
         user.setIsDaily(requestDto.getIsDaily());
         userRepository.save(user);
 
-        return "구독이 완료되었습니다.";
     }
 }
