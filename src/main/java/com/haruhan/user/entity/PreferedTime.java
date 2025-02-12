@@ -1,6 +1,7 @@
 package com.haruhan.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
 import lombok.Getter;
@@ -23,6 +24,11 @@ public enum PreferedTime {
                 .filter(preferedTime -> preferedTime.displayName.equals(value))
                 .findFirst()
                 .orElseThrow(() -> new CustomException(StatusCode.INVALID_INPUT));
+    }
+
+    @JsonValue
+    public String getDisplayName() {
+        return displayName;
     }
 }
 //클라이언트가 세 가지 옵션 중 하나를 선택하면 해당 시간에 이메일을 받을 수 있는 기능을 구현할 구조o

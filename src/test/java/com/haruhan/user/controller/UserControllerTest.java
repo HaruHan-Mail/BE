@@ -33,6 +33,7 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
+
     @Test
     @DisplayName("올바른 구독 요청이면 HTTP 200 응답을 받아야 한다.")
     void 올바른_구독_요청_200확인() throws Exception {
@@ -48,6 +49,7 @@ public class UserControllerTest {
 
         verify(userService, times(1)).subscribe(any(UserRequestDto.class));
     }
+
 
     @Test
     @DisplayName("이미 구독된 이메일이면 409 Conflict 응답을 받아야 한다.")
