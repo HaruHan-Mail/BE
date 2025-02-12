@@ -1,6 +1,8 @@
 package com.haruhan.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.haruhan.common.error.CustomException;
+import com.haruhan.common.error.StatusCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +22,9 @@ public enum PreferedTime {
         return Arrays.stream(PreferedTime.values())
                 .filter(preferedTime -> preferedTime.displayName.equals(value))
                 .findFirst()
-                .orElse(null); // 예외를 던지는 대신 null 반환
+                .orElseThrow(() -> new CustomException(StatusCode.INVALID_INPUT));
     }
 }
+//클라이언트가 세 가지 옵션 중 하나를 선택하면 해당 시간에 이메일을 받을 수 있는 기능을 구현할 구조o
+//저장된 preferedTime을 기반으로 이메일을 해당 시간에 전송하는 로직 필요
+//이메일 전송 기능이 추가된 후, 이와 연관지어 사용자가 선택한 시간에 전송하면 됨
