@@ -19,16 +19,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void subscribe(UserRequestDto requestDto) {
         // 이미 가입된 이메일인지 확인
-        if (userRepository.findByEmail(requestDto.getEmail()).isPresent()) {
+        if (userRepository.findByEmail(requestDto.email()).isPresent()) {
             throw new CustomException(StatusCode.ALREADY_EXIST);
         }
 
         // 새 사용자 추가
-        User user = new User();
-        user.setEmail(requestDto.getEmail());
-        user.setPreferedTime(requestDto.getPreferedTime());
-        user.setIsDaily(requestDto.getIsDaily());
+        User user = new User(requestDto.email(), requestDto.preferedTime(), requestDto.isDaily());
         userRepository.save(user);
+    }
 
+    @Transactional
+    @Override
+    public void unsubscribe(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new CustomException(StatusCode.NOT_EXIST));
+
+        userRepository.delete(user);
     }
 }
