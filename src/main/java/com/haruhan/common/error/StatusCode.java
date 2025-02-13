@@ -9,7 +9,9 @@ public enum StatusCode {
     ALREADY_EXIST(409, "이미 존재하는 이메일입니다.", HttpStatus.CONFLICT),
     NOT_EXIST(400, "데이터가 존재하지 않습니다.", HttpStatus.BAD_REQUEST),
     NOT_FOUND(404, "존재하지 않는 데이터입니다.", HttpStatus.NOT_FOUND),
+    NOT_FOUND_USER(404, "존재하지 않는 사용자입니다.", HttpStatus.NOT_FOUND),
     INVALID_INPUT(400, "잘못된 입력 값입니다.", HttpStatus.BAD_REQUEST),
+    ALREADY_BOOKMARKED(409, "이미 찜한 컨텐츠입니다.", HttpStatus.CONFLICT),
     INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 
     private final int statusCode;
