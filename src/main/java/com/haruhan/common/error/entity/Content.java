@@ -2,13 +2,16 @@ package com.haruhan.common.error.entity;
 
 import com.haruhan.bookmark.entity.Bookmark;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Table(name = "content")
+@NoArgsConstructor
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +39,13 @@ public class Content {
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
     //orphanRemoval : 연결이 끊어진(null이 된) 북마크 엔티티를 자동 삭제
     private List<Bookmark> bookmarks;
+
+    public Content(String title, String summary, String background, String importance, String tip, String additional_resources) {
+        this.title = title;
+        this.summary = summary;
+        this.background = background;
+        this.importance = importance;
+        this.tip = tip;
+        this.additional_resources = additional_resources;
+    }
 }
