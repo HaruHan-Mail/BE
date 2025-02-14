@@ -4,8 +4,6 @@ import com.haruhan.user.entity.PreferedTime;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 
 public record UserRequestDto(
         @NotBlank(message = "이메일을 입력하세요.")
