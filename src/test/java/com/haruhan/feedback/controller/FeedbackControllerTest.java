@@ -1,7 +1,7 @@
 package com.haruhan.feedback.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.haruhan.feedback.dto.PostFeedbackDto;
+import com.haruhan.feedback.dto.FeedbackPostRequestDto;
 import com.haruhan.feedback.service.FeedbackService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,8 +33,8 @@ public class FeedbackControllerTest {
     @DisplayName("올바른 피드백을 입력하면 HTTP 200 응답을 받아야 한다.")
     void 올바른_요청일때_200확인() throws Exception {
         // Given
-        PostFeedbackDto validDto = new PostFeedbackDto("example content");
-        doNothing().when(feedbackService).saveFeedback(any(PostFeedbackDto.class));
+        FeedbackPostRequestDto validDto = new FeedbackPostRequestDto("example content");
+        doNothing().when(feedbackService).saveFeedback(any(FeedbackPostRequestDto.class));
 
         // When & Then
         mockMvc.perform(post("/feedback")
@@ -42,6 +42,6 @@ public class FeedbackControllerTest {
                         .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isOk()); // HTTP 200 응답 확인
 
-        verify(feedbackService, times(1)).saveFeedback(any(PostFeedbackDto.class)); //
+        verify(feedbackService, times(1)).saveFeedback(any(FeedbackPostRequestDto.class)); //
     }
 }
