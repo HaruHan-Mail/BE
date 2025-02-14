@@ -1,8 +1,8 @@
 package com.haruhan.feedback.service;
 
-import com.haruhan.feedback.dto.PostFeedbackDto;
+import com.haruhan.feedback.dto.FeedbackPostRequestDto;
 
 public interface FeedbackService {
-    void saveFeedback(PostFeedbackDto postFeedbackDto);
+    void saveFeedback(FeedbackPostRequestDto feedbackPostRequestDto);
 
 }
