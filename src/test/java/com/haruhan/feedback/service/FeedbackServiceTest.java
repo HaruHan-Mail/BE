@@ -2,7 +2,7 @@ package com.haruhan.feedback.service;
 
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
-import com.haruhan.feedback.dto.PostFeedbackDto;
+import com.haruhan.feedback.dto.FeedbackPostRequestDto;
 import com.haruhan.feedback.entity.Feedback;
 import com.haruhan.feedback.repository.FeedbackRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +36,7 @@ public class FeedbackServiceTest {
     @DisplayName("피드백이 정상적으로 저장되는지 확인")
     void 피드백저장확인() {
         //Given
-        PostFeedbackDto validDto = new PostFeedbackDto("valid feedback content");
+        FeedbackPostRequestDto validDto = new FeedbackPostRequestDto("valid feedback content");
 
         //When
         feedbackService.saveFeedback(validDto);
@@ -49,7 +49,7 @@ public class FeedbackServiceTest {
     @DisplayName("Null 값인 피드백이 들어왔을때 예외처리 확인")
     void NULL피드백예외처리확인() {
         //Given
-        PostFeedbackDto invalidDto = new PostFeedbackDto(null);
+        FeedbackPostRequestDto invalidDto = new FeedbackPostRequestDto(null);
 
         //When
         CustomException exception = assertThrows(CustomException.class, () -> feedbackService.saveFeedback(invalidDto));
@@ -62,7 +62,7 @@ public class FeedbackServiceTest {
     @DisplayName("빈 값인 피드백이 들어왔을때 예외처리 확인")
     void Empty피드백예외처리확인() {
         //Given
-        PostFeedbackDto invalidDto = new PostFeedbackDto("");
+        FeedbackPostRequestDto invalidDto = new FeedbackPostRequestDto("");
 
         //When
         CustomException exception = assertThrows(CustomException.class, () -> feedbackService.saveFeedback(invalidDto));
