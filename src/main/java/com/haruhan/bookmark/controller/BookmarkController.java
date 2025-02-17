@@ -33,4 +33,9 @@ public class BookmarkController {
     public ResponseEntity<Message> getAllBookmarks(@PathVariable String userEmail) {
         return ResponseEntity.ok(new Message(StatusCode.OK, bookmarkService.getBookmarkContent(userEmail)));
     }
+
+    @GetMapping
+    public ResponseEntity<Message> getIsBookmarked(@RequestBody BookmarkReqDto bookmarkReqDto) {
+        return ResponseEntity.ok(new Message(StatusCode.OK, bookmarkService.isBookmarked(bookmarkReqDto)));
+    }
 }
