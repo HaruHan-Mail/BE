@@ -36,6 +36,9 @@ public class Content {
     @Column(name = "additional_resources", nullable = false)
     private String additional_resources;
 
+    @Column(name = "bookmark_count", nullable = false)
+    private int bookmark_count = 0;
+
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
     //orphanRemoval : 연결이 끊어진(null이 된) 북마크 엔티티를 자동 삭제
     private List<Bookmark> bookmarks;
@@ -47,5 +50,15 @@ public class Content {
         this.importance = importance;
         this.tip = tip;
         this.additional_resources = additional_resources;
+    }
+
+    public void increaseBookmarkCount() {
+        this.bookmark_count++;
+    }
+
+    public void decreaseBookmarkCount() {
+        if(this.bookmark_count > 0){
+            this.bookmark_count--;
+        }
     }
 }

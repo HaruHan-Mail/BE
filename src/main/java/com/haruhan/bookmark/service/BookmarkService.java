@@ -9,4 +9,5 @@ public interface BookmarkService {
     void addBookmark(BookmarkReqDto bookmarkReqDto);
     void deleteBookmark(BookmarkReqDto bookmarkReqDto);
     List<BookmarkGetResDto> getBookmarkContent(String userEmail);
+    boolean isBookmarked(BookmarkReqDto bookmarkReqDto);
 }

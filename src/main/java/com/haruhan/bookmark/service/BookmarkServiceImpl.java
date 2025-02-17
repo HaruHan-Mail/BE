@@ -51,14 +51,22 @@ public class BookmarkServiceImpl implements BookmarkService {
             throw new CustomException(StatusCode.ALREADY_BOOKMARKED);
         }
 
+        Content content = bookmark.getContent();
+        // 북마크 카운트 증가
+        content.increaseBookmarkCount();
+        contentRepository.save(content);
         // 북마크 저장
         bookmarkRepository.save(bookmark);
+
     }
 
     @Override
     public void deleteBookmark(BookmarkReqDto bookmarkReqDto) {
 
         Bookmark bookmark = isUsableData(bookmarkReqDto);
+        Content content = bookmark.getContent();
+        // 북마크 카운트 감소
+        content.decreaseBookmarkCount();
 
         // 북마크 삭제
         bookmarkRepository.delete(bookmark);
@@ -72,6 +80,9 @@ public class BookmarkServiceImpl implements BookmarkService {
 
         // 사용자의 찜한 지식 목록 가져오기
         List<Bookmark> bookmarks = bookmarkRepository.findByUser(user);
+        if (bookmarks.isEmpty()) {
+            throw new CustomException(StatusCode.NOT_EXIST);
+        }
 
         // Bookmark를 DTO로 변환 후 반환
         return bookmarks.stream()
@@ -84,5 +95,17 @@ public class BookmarkServiceImpl implements BookmarkService {
                         bookmark.getContent().getTip(),
                         bookmark.getContent().getAdditional_resources()
                 )).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean isBookmarked(BookmarkReqDto bookmarkReqDto) {
+        Bookmark bookmark = isUsableData(bookmarkReqDto);
+        BookmarkId bookmarkId = bookmark.getBookmarkId();
+
+        // 북마크한 지식인지 확인
+        if (bookmarkRepository.existsByBookmarkId(bookmarkId)) {
+            return true;
+        }
+        return false;
     }
 }
