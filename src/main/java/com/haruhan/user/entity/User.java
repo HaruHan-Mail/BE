@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor  // JPA 기본 생성자 필수
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
 public class User {
@@ -36,5 +36,14 @@ public class User {
         this.preferedTime = preferedTime;
         this.isDaily = isDaily;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public void updateSettings(PreferedTime preferedTime, boolean isDaily) {
+        this.isDaily = isDaily;
+        this.preferedTime = preferedTime;
+    }
+
+    public boolean isDaily() {
+        return isDaily;
     }
 }

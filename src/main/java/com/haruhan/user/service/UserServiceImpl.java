@@ -3,6 +3,7 @@ package com.haruhan.user.service;
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.user.dto.UserRequestDto;
+import com.haruhan.user.dto.UserSettingRequestDto;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -35,5 +36,15 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_EXIST));
 
         userRepository.delete(user);
+    }
+
+    @Override
+    @Transactional
+    public void updateUserSettings(UserSettingRequestDto requestDto) {
+        User user = userRepository.findByEmail(requestDto.email())
+                .orElseThrow(() -> new CustomException(StatusCode.NOT_EXIST));
+
+        user.updateSettings(requestDto.preferedTime(), requestDto.isDaily());
+        userRepository.save(user);
     }
 }
