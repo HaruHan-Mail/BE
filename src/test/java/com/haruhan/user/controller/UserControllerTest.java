@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.user.dto.UserRequestDto;
+import com.haruhan.user.dto.UserSettingRequestDto;
 import com.haruhan.user.entity.PreferedTime;
 import com.haruhan.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -67,4 +69,22 @@ public class UserControllerTest {
 
         verify(userService, times(1)).subscribe(any(UserRequestDto.class));
     }
+
+    @Test
+    @DisplayName("유저 설정 변경 성공 - HTTP 200")
+    void 유저_설정_변경_200확인() throws Exception {
+        // Given
+        UserSettingRequestDto requestDto = new UserSettingRequestDto("test@example.com", PreferedTime.EVENING, false);
+        doNothing().when(userService).updateUserSettings(any(UserSettingRequestDto.class));
+
+        // When & Then
+        mockMvc.perform(patch("/user/settings")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        verify(userService, times(1)).updateUserSettings(any(UserSettingRequestDto.class));
+    }
+
+
 }
