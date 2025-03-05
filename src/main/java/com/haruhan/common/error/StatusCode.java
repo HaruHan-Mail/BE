@@ -12,6 +12,7 @@ public enum StatusCode {
     NOT_FOUND_USER(404, "존재하지 않는 사용자입니다.", HttpStatus.NOT_FOUND),
     INVALID_INPUT(400, "잘못된 입력 값입니다.", HttpStatus.BAD_REQUEST),
     ALREADY_BOOKMARKED(409, "이미 찜한 컨텐츠입니다.", HttpStatus.CONFLICT),
+    INVALID_VERIFICATION_CODE(400, "인증번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
     INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 
     private final int statusCode;

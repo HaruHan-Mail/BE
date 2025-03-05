@@ -2,6 +2,7 @@ package com.haruhan.user.controller;
 
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.common.error.dto.Message;
+import com.haruhan.user.dto.UserConfirmRequestDto;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.dto.UserSettingRequestDto;
 import com.haruhan.user.service.UserService;
@@ -34,5 +35,12 @@ public class UserController {
     public ResponseEntity<Message> updateUserSettings(@Valid @RequestBody UserSettingRequestDto requestDto) {
         userService.updateUserSettings(requestDto);
         return ResponseEntity.ok(new Message(StatusCode.OK));
+    }
+
+    // 2. 인증번호 검증 및 구독 완료
+    @PostMapping("/confirm-subscribe")
+    public ResponseEntity<Message> confirmSubscribe(@RequestBody UserConfirmRequestDto userConfirmRequestDto) {
+        userService.confirmSubscription(userConfirmRequestDto);
+        return ResponseEntity.ok(new Message(StatusCode.OK, "구독이 완료되었습니다."));
     }
 }
