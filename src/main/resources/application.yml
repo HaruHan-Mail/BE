@@ -32,7 +32,7 @@ logging:
 
 aws:
   ses:
-    access-key: ${AWS_ACCESE_KEY}
+    access-key: ${AWS_ACCESS_KEY}
     secret-key: ${AWS_SECRET_KEY}
 
 profiles:
