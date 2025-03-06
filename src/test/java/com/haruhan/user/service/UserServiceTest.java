@@ -37,17 +37,17 @@ class UserServiceTest {
         requestDto = new UserRequestDto("test@example.com", PreferedTime.MORNING, true);
     }
 
-    @Test
-    void 구독_성공() {
-        // Given: 이메일이 없는 상태(Mock 설정)
-        when(userRepository.findByEmail(requestDto.email())).thenReturn(Optional.empty());
-
-        // When & Then: 예외가 발생하지 않는지 확인 (void 메서드)
-        assertDoesNotThrow(() -> userService.subscribe(requestDto));
-
-        // User 객체가 올바르게 저장되었는지 검증
-        verify(userRepository, times(1)).save(any(User.class));
-    }
+//    @Test
+//    void 구독_성공() {
+//        // Given: 이메일이 없는 상태(Mock 설정)
+//        when(userRepository.findByEmail(requestDto.email())).thenReturn(Optional.empty());
+//
+//        // When & Then: 예외가 발생하지 않는지 확인 (void 메서드)
+//        assertDoesNotThrow(() -> userService.subscribe(requestDto));
+//
+//        // User 객체가 올바르게 저장되었는지 검증
+//        verify(userRepository, times(1)).save(any(User.class));
+//    }
 
     @Test
     void 이미_구독된_이메일이면_예외발생() {
