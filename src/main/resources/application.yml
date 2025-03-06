@@ -20,9 +20,20 @@ spring:
       hibernate:
         format_sql: true
 
+  data:
+    redis:
+      host: ${redis_host}
+      port: ${redis_port}
+      password: ${redis_password}
+
 logging:
   level:
     root: info
+
+aws:
+  ses:
+    access-key: ${aws_access_key}
+    secret-key: ${aws_secret_key}
 
 profiles:
   active: dev

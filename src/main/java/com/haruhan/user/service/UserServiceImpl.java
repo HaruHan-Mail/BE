@@ -2,6 +2,7 @@ package com.haruhan.user.service;
 
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
+import com.haruhan.user.dto.UserConfirmRequestDto;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.dto.UserSettingRequestDto;
 import com.haruhan.user.entity.User;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final EmailService emailService;
     private final UserRepository userRepository;
 
     @Transactional
@@ -24,9 +26,8 @@ public class UserServiceImpl implements UserService {
             throw new CustomException(StatusCode.ALREADY_EXIST);
         }
 
-        // 새 사용자 추가
-        User user = new User(requestDto.email(), requestDto.preferedTime(), requestDto.isDaily());
-        userRepository.save(user);
+        // 인증번호 이메일 전송
+        emailService.sendVerificationEmail(requestDto.email());
     }
 
     @Transactional
@@ -45,6 +46,19 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_EXIST));
 
         user.updateSettings(requestDto.preferedTime(), requestDto.isDaily());
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void confirmSubscription(UserConfirmRequestDto userConfirmRequestDto) {
+        // 인증번호 확인
+        if (!emailService.verifyCode(userConfirmRequestDto.email(), userConfirmRequestDto.verificationCode())) {
+            throw new CustomException(StatusCode.INVALID_VERIFICATION_CODE);
+        }
+
+        // 새 사용자 추가
+        User user = new User(userConfirmRequestDto.email(), userConfirmRequestDto.preferedTime(), userConfirmRequestDto.isDaily());
         userRepository.save(user);
     }
 }

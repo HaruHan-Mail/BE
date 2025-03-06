@@ -1,6 +1,7 @@
 package com.haruhan.user.service;
 
 
+import com.haruhan.user.dto.UserConfirmRequestDto;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.dto.UserSettingRequestDto;
 
@@ -10,4 +11,6 @@ public interface UserService {
     void unsubscribe(String email);
 
     void updateUserSettings(UserSettingRequestDto requestDto);
+
+    void confirmSubscription(UserConfirmRequestDto userConfirmRequestDto);
 }
