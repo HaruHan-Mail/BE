@@ -22,9 +22,9 @@ spring:
 
   data:
     redis:
-      host: ${redis_host}
-      port: ${redis_port}
-      password: ${redis_password}
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
 
 logging:
   level:
@@ -32,8 +32,8 @@ logging:
 
 aws:
   ses:
-    access-key: ${aws_access_key}
-    secret-key: ${aws_secret_key}
+    access-key: ${AWS_ACCESE_KEY}
+    secret-key: ${AWS_SECRET_KEY}
 
 profiles:
   active: dev
