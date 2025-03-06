@@ -21,7 +21,7 @@ public class EmailService {
     private final TemplateEngine templateEngine;
     private final RedisTemplate<String, String> redisTemplate;
 
-    private static final String FROM = "kdh10045098@gmail.com"; // SES에 등록된 발신자 이메일
+    private static final String FROM = "no-reply@haruhan.site"; // SES에 등록된 발신자 이메일
     private static final long EXPIRATION_TIME = 5; // 인증번호 만료 시간 (5분)
 
     public void sendVerificationEmail(String email) {

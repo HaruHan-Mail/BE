@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Email Verification</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HaruHan</title>
 </head>
-<body>
-<h2>Email Verification Code</h2>
-<p>Hello,</p>
-<p>Your verification code is: <strong th:text="${code}"></strong></p>
-<p>This code will expire in 5 minutes.</p>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5;">
+<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <a href="#" style="text-decoration: none; color: #333;">
+            <p style="font-size: 24px; font-weight: bold; margin: 0;">HaruHan</p>
+        </a>
+        <h2 style="color: #333; margin: 20px 0;">HaruHan 구독을 환영합니다.</h2>
+        <p style="color: #666; line-height: 1.6;">
+            <br>
+            인증번호 : <strong th:text="${code}"></strong><br>
+            <br>
+            HaruHan지식 구독에 필요한 인증번호입니다.<br>
+            위 인증번호를 입력하여 이메일 주소 인증을 완료해주시기 바랍니다.<br>
+            <br>
+            HaruHan을 찾아주셔서 진심으로 감사드립니다.<br/>
+            <br/>
+            <span style="font-size: 14px; color: #888; font-style: italic;">*구독자분들의 휴식을 위해, 주말에는 메일을 보내드리지 않아요. 참고해 주세요.</span> <br>
+        </p>
+    </div>
+</div>
 </body>
 </html>
