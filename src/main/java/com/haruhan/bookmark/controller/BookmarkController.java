@@ -1,6 +1,5 @@
 package com.haruhan.bookmark.controller;
 
-import com.haruhan.bookmark.dto.BookmarkGetResDto;
 import com.haruhan.bookmark.dto.BookmarkReqDto;
 import com.haruhan.bookmark.service.BookmarkService;
 import com.haruhan.common.error.StatusCode;
@@ -10,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bookmark")
+@RequestMapping("/api/bookmark")
 @RequiredArgsConstructor
 @CrossOrigin
 public class BookmarkController {

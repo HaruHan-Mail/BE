@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/feedback")
+@RequestMapping("/api/feedback")
 @RequiredArgsConstructor
 @CrossOrigin
 public class FeedbackController {
