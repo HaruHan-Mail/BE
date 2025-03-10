@@ -5,6 +5,7 @@ import com.haruhan.common.error.dto.Message;
 import com.haruhan.user.dto.UserConfirmRequestDto;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.dto.UserSettingRequestDto;
+import com.haruhan.user.dto.UserUnsubscribeRequestDto;
 import com.haruhan.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Message> unsubscribe(@RequestParam String email) {
-        userService.unsubscribe(email);
+    public ResponseEntity<Message> unsubscribe(@RequestBody UserUnsubscribeRequestDto userUnsubscribeRequestDto) {
+        userService.unsubscribe(userUnsubscribeRequestDto);
         return ResponseEntity.ok(new Message(StatusCode.OK));
     }
 

@@ -6,6 +6,6 @@ import jakarta.validation.constraints.NotNull;
 public record UserSettingRequestDto (
         @NotNull String email,
         @NotNull PreferedTime preferedTime,
-        @NotNull boolean isDaily
-
+        @NotNull boolean isDaily,
+        @NotNull String token
 ) {}

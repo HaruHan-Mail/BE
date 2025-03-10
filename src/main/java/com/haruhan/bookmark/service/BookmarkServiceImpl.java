@@ -1,5 +1,6 @@
 package com.haruhan.bookmark.service;
 
+import com.haruhan.bookmark.dto.BookmarkGetReqDto;
 import com.haruhan.bookmark.dto.BookmarkGetResDto;
 import com.haruhan.bookmark.dto.BookmarkReqDto;
 import com.haruhan.bookmark.entity.Bookmark;
@@ -30,7 +31,7 @@ public class BookmarkServiceImpl implements BookmarkService {
     // 사용 가능한 데이터인지 확인하는 메소드
     private Bookmark isUsableData(BookmarkReqDto bookmarkReqDto) {
         // 이메일로 사용자 찾기
-        User user = userRepository.findByEmail(bookmarkReqDto.userEmail())
+        User user = userRepository.findByToken(bookmarkReqDto.token())
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
 
         // 컨텐츠 찾기
@@ -73,9 +74,9 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public List<BookmarkGetResDto> getBookmarkContent(String userEmail) {
+    public List<BookmarkGetResDto> getBookmarkContent(BookmarkGetReqDto bookmarkGetReqDto) {
         // 이메일로 사용자 찾기
-        User user = userRepository.findByEmail(userEmail)
+        User user = userRepository.findByToken(bookmarkGetReqDto.token())
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
 
         // 사용자의 찜한 지식 목록 가져오기

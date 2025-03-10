@@ -5,6 +5,7 @@ import com.haruhan.common.error.StatusCode;
 import com.haruhan.user.dto.UserConfirmRequestDto;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.dto.UserSettingRequestDto;
+import com.haruhan.user.dto.UserUnsubscribeRequestDto;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -32,8 +33,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void unsubscribe(String email) {
-        User user = userRepository.findByEmail(email)
+    public void unsubscribe(UserUnsubscribeRequestDto userUnsubscribeRequestDto) {
+        User user = userRepository.findByToken(userUnsubscribeRequestDto.token())
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_EXIST));
 
         userRepository.delete(user);
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updateUserSettings(UserSettingRequestDto requestDto) {
-        User user = userRepository.findByEmail(requestDto.email())
+        User user = userRepository.findByToken(requestDto.token())
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_EXIST));
 
         user.updateSettings(requestDto.preferedTime(), requestDto.isDaily());
