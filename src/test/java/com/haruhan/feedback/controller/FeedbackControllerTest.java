@@ -37,7 +37,7 @@ public class FeedbackControllerTest {
         doNothing().when(feedbackService).saveFeedback(any(FeedbackPostRequestDto.class));
 
         // When & Then
-        mockMvc.perform(post("/feedback")
+        mockMvc.perform(post("/api/feedback")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isOk()); // HTTP 200 응답 확인
