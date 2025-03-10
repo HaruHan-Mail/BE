@@ -44,7 +44,7 @@ public class UserControllerTest {
         doNothing().when(userService).subscribe(any(UserRequestDto.class));
 
         // When & Then
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isOk());
@@ -62,7 +62,7 @@ public class UserControllerTest {
                 .when(userService).subscribe(any(UserRequestDto.class));
 
         // When & Then
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(duplicateDto)))
                 .andExpect(status().isConflict());
@@ -78,7 +78,7 @@ public class UserControllerTest {
         doNothing().when(userService).updateUserSettings(any(UserSettingRequestDto.class));
 
         // When & Then
-        mockMvc.perform(patch("/user/settings")
+        mockMvc.perform(patch("/api/user/settings")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk());

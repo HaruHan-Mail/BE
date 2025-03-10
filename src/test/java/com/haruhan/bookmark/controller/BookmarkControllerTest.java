@@ -37,7 +37,7 @@ public class BookmarkControllerTest {
         doNothing().when(bookmarkService).addBookmark(any(BookmarkReqDto.class));
 
         //When & Then
-        mockMvc.perform(post("/bookmark")
+        mockMvc.perform(post("/api/bookmark")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(validDto)))
                 .andExpect(status().isOk());
