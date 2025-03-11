@@ -3,6 +3,7 @@ package com.haruhan.user.service;
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.user.dto.UserRequestDto;
+import com.haruhan.user.dto.UserSettingRequestDto;
 import com.haruhan.user.entity.PreferedTime;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
@@ -15,8 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class) // Mockito 확장 사용
@@ -79,7 +80,7 @@ class UserServiceTest {
 //        assertThat(user.getPreferedTime()).isEqualTo(PreferedTime.EVENING);
 //        verify(userRepository, times(1)).save(user);
 //    }
-
+//
 //    @Test
 //    void 존재하지_않는_유저_설정_변경_시_예외발생() {
 //        // Given
