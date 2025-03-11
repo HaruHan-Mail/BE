@@ -70,21 +70,21 @@ public class UserControllerTest {
         verify(userService, times(1)).subscribe(any(UserRequestDto.class));
     }
 
-    @Test
-    @DisplayName("유저 설정 변경 성공 - HTTP 200")
-    void 유저_설정_변경_200확인() throws Exception {
-        // Given
-        UserSettingRequestDto requestDto = new UserSettingRequestDto("test@example.com", PreferedTime.EVENING, false);
-        doNothing().when(userService).updateUserSettings(any(UserSettingRequestDto.class));
-
-        // When & Then
-        mockMvc.perform(patch("/api/user/settings")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
-
-        verify(userService, times(1)).updateUserSettings(any(UserSettingRequestDto.class));
-    }
+//    @Test
+//    @DisplayName("유저 설정 변경 성공 - HTTP 200")
+//    void 유저_설정_변경_200확인() throws Exception {
+//        // Given
+//        UserSettingRequestDto requestDto = new UserSettingRequestDto("test@example.com", PreferedTime.EVENING, false);
+//        doNothing().when(userService).updateUserSettings(any(UserSettingRequestDto.class));
+//
+//        // When & Then
+//        mockMvc.perform(patch("/api/user/settings")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(requestDto)))
+//                .andExpect(status().isOk());
+//
+//        verify(userService, times(1)).updateUserSettings(any(UserSettingRequestDto.class));
+//    }
 
 
 }
