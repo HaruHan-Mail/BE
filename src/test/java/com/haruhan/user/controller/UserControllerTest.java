@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.user.dto.UserRequestDto;
-import com.haruhan.user.dto.UserSettingRequestDto;
 import com.haruhan.user.entity.PreferedTime;
 import com.haruhan.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

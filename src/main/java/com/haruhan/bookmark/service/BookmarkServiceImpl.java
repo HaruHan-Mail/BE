@@ -30,7 +30,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     // 사용 가능한 데이터인지 확인하는 메소드
     private Bookmark isUsableData(BookmarkReqDto bookmarkReqDto) {
-        // 이메일로 사용자 찾기
+        // 토큰 값으로 사용자 찾기
         User user = userRepository.findByToken(bookmarkReqDto.token())
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
 
