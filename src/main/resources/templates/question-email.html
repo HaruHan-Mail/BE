@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haruhan</title>
+</head>
+<body style="font-family: 'Roboto', sans-serif; background: #f3f3f3; color: #333; margin: 0; padding: 0;">
+<section class="mail-preview" aria-hidden="true" style="display: none; font-size: 1px; color: #ffffff; line-height: 1px; max-height: 0; max-width: 0; opacity: 0; overflow: hidden;">
+    이번주 질문이 도착했습니다.
+</section>
+<div class="container" style="max-width: 500px; margin: 30px auto; padding: 20px;">
+    <div class="mail-box" style="background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); overflow: hidden;">
+        <div class="header" style="background: #e86912; padding: 20px; text-align: center;">
+            <p style="color: #fff; font-size: 24px; font-weight: 700; margin: 0;">Haruhan</p>
+        </div>
+        <div class="content" style="padding: 30px 20px; text-align: center;">
+            <h1 th:text="${tmp}" style="font-size: 20px; margin-bottom: 15px;">BE 11월 2주차 질문</h1>
+            <p style="font-size: 16px; margin-bottom: 25px; line-height: 1.6;">아래 버튼을 눌러 이번 주차 질문들의 답변을 확인해 보세요!</p>
+            <a href="https://haruhan.site/question" style="display: inline-block; padding: 12px 30px; background: #e86912; color: #fff; text-decoration: none; font-weight: 600; border-radius: 6px;">답변 확인</a>
+        </div>
+        <div class="footer" style="background: #fafafa; padding: 15px; text-align: center; font-size: 14px; color: #888;">
+            <a href="https://haruhan.site/setting?email=이메일&token=토큰" target="_blank" style="color: #e86912; text-decoration: none; margin: 0 10px; border-bottom: 1px dashed #e86912;">설정</a>
+            <span style="margin: 0 10px;">|</span>
+            <a th:href="@{https://haruhan.site/unsubscribe(email=${email}, token=${token})}" target="_blank" style="color: #e86912; text-decoration: none; margin: 0 10px; border-bottom: 1px dashed #e86912;">구독 해지</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,11 @@
-package com.haruhan.user.service;
+package com.haruhan.email.service;
 
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.model.*;
+import com.haruhan.common.error.CustomException;
+import com.haruhan.common.error.StatusCode;
+import com.haruhan.user.entity.User;
+import com.haruhan.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,9 +24,34 @@ public class EmailService {
     private final AmazonSimpleEmailService amazonSimpleEmailService;
     private final TemplateEngine templateEngine;
     private final RedisTemplate<String, String> redisTemplate;
+    private final UserRepository userRepository;
 
     private static final String FROM = "no-reply@haruhan.site"; // SES에 등록된 발신자 이메일
     private static final long EXPIRATION_TIME = 5; // 인증번호 만료 시간 (5분)
+
+    public void sendQuestionEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
+        Context  context = new Context();
+        context.setVariable("tmp", "박재홍홍홍");
+        context.setVariable("email", email);
+        context.setVariable("token", user.getToken());
+        String htmlContent = templateEngine.process("question-email", context);
+
+        SendEmailRequest request = new SendEmailRequest()
+                .withDestination(new Destination().withToAddresses(email))
+                .withMessage(new Message()
+                        .withBody(new Body()
+                                .withHtml(new Content()
+                                        .withCharset("UTF-8")
+                                        .withData(htmlContent)))
+                        .withSubject(new Content()
+                                .withCharset("UTF-8")
+                                .withData("김치찌개 끓이는 방법(재홍 쉐프.ver)")))
+                .withSource(FROM);
+
+        amazonSimpleEmailService.sendEmail(request);
+        log.info("Sent question email to: {}", email);
+    }
 
     public void sendVerificationEmail(String email) {
         String verificationCode = generateRandomCode(); // 인증번호 생성
@@ -46,7 +75,7 @@ public class EmailService {
                                         .withData("Your verification code is: " + verificationCode)))
                         .withSubject(new Content()
                                 .withCharset("UTF-8")
-                                .withData("Your Verification Code")))
+                                .withData("HaruHan메일 인증번호 전송")))
                 .withSource(FROM);
 
         // 이메일 전송

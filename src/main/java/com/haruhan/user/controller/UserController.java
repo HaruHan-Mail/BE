@@ -38,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok(new Message(StatusCode.OK));
     }
 
-    // 2. 인증번호 검증 및 구독 완료
+    // 인증번호 검증 및 구독 완료
     @PostMapping("/confirm-subscribe")
     public ResponseEntity<Message> confirmSubscribe(@RequestBody UserConfirmRequestDto userConfirmRequestDto) {
         userService.confirmSubscription(userConfirmRequestDto);
