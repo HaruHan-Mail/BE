@@ -2,6 +2,7 @@ package com.haruhan.user.service;
 
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
+import com.haruhan.email.service.EmailService;
 import com.haruhan.user.dto.UserConfirmRequestDto;
 import com.haruhan.user.dto.UserRequestDto;
 import com.haruhan.user.dto.UserSettingRequestDto;
