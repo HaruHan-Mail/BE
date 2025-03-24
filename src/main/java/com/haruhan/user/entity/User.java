@@ -43,6 +43,9 @@ public class User {
     //orphanRemoval : 연결이 끊어진(null이 된) 북마크 엔티티를 자동 삭제
     private List<Bookmark> bookmarks;
 
+    @Column(name = "last_received_content_id")
+    private Long lastReceivedContentId = 0L; // 마지막으로 받은 콘텐츠 ID
+
 
     public User(String email, PreferedTime preferedTime, Boolean isDaily) {
         this.email = email;
