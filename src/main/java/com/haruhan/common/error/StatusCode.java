@@ -13,7 +13,9 @@ public enum StatusCode {
     INVALID_INPUT(400, "잘못된 입력 값입니다.", HttpStatus.BAD_REQUEST),
     ALREADY_BOOKMARKED(409, "이미 찜한 컨텐츠입니다.", HttpStatus.CONFLICT),
     INVALID_VERIFICATION_CODE(400, "인증번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
-    INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+    INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+    NOT_EXIST_ADMIN_CODE(400,"관리자 코드가 존재하지 않습니다.",HttpStatus.BAD_REQUEST),
+    INVALID_ADMIN_CODE(400,"관리자 코드가 일치하지 않습니다.",HttpStatus.BAD_REQUEST);
 
     private final int statusCode;
     private final String message;

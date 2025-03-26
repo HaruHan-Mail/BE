@@ -11,6 +11,7 @@ import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     private final EmailService emailService;
     private final UserRepository userRepository;
+    private final RedisTemplate<String, String> redisTemplate;
 
     @Transactional
     @Override
@@ -62,5 +64,16 @@ public class UserServiceImpl implements UserService {
         // 새 사용자 추가
         User user = new User(userConfirmRequestDto.email(), userConfirmRequestDto.preferedTime(), userConfirmRequestDto.isDaily());
         userRepository.save(user);
+    }
+
+    @Override
+    public void confirmAdmin(String code) {
+        String adminCode = redisTemplate.opsForValue().get("admin");
+        if (adminCode == null) {
+            throw new CustomException(StatusCode.NOT_EXIST_ADMIN_CODE);
+        }
+        if (!adminCode.equals(code)) {
+            throw new CustomException(StatusCode.INVALID_ADMIN_CODE);
+        }
     }
 }
