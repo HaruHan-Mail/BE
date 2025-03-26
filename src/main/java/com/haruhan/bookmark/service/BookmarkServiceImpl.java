@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,10 +92,10 @@ public class BookmarkServiceImpl implements BookmarkService {
                         bookmark.getContent().getContent_id(),
                         bookmark.getContent().getTitle(),
                         bookmark.getContent().getSummary(),
-                        bookmark.getContent().getBackground(),
-                        bookmark.getContent().getImportance(),
-                        bookmark.getContent().getTip(),
-                        bookmark.getContent().getAdditional_resources()
+                        splitByNewLine(bookmark.getContent().getBackground()),
+                        splitByNewLine(bookmark.getContent().getImportance()),
+                        splitByNewLine(bookmark.getContent().getTip()),
+                        splitByNewLine(bookmark.getContent().getAdditional_resources())
                 )).collect(Collectors.toList());
     }
 
@@ -108,5 +109,13 @@ public class BookmarkServiceImpl implements BookmarkService {
             return true;
         }
         return false;
+    }
+
+    //문자열을 줄바꿈 기준으로 분리하여 리스트로 변환
+    private List<String> splitByNewLine(String text) {
+        return Arrays.stream(text.split("\n"))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
     }
 }

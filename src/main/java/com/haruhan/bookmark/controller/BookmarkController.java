@@ -29,12 +29,12 @@ public class BookmarkController {
         return ResponseEntity.ok(new Message(StatusCode.OK));
     }
 
-    @GetMapping("/{userEmail}")
+    @GetMapping
     public ResponseEntity<Message> getAllBookmarks(@RequestBody BookmarkGetReqDto bookmarkGetReqDto) {
         return ResponseEntity.ok(new Message(StatusCode.OK, bookmarkService.getBookmarkContent(bookmarkGetReqDto)));
     }
 
-    @GetMapping
+    @GetMapping("/checking")
     public ResponseEntity<Message> getIsBookmarked(@RequestBody BookmarkReqDto bookmarkReqDto) {
         return ResponseEntity.ok(new Message(StatusCode.OK, bookmarkService.isBookmarked(bookmarkReqDto)));
     }
