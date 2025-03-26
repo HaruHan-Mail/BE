@@ -44,4 +44,11 @@ public class UserController {
         userService.confirmSubscription(userConfirmRequestDto);
         return ResponseEntity.ok(new Message(StatusCode.OK, "구독이 완료되었습니다."));
     }
+
+    // 관리자 기능을 사용하기 위한 관리자 코드 확인
+    @GetMapping("/admin/{adminCode}")
+    public ResponseEntity<Message> confirmAdmin(@PathVariable String adminCode) {
+        userService.confirmAdmin(adminCode);
+        return ResponseEntity.ok(new Message(StatusCode.OK));
+    }
 }

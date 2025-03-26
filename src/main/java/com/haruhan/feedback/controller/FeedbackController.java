@@ -21,5 +21,9 @@ public class FeedbackController {
         feedbackService.saveFeedback(feedbackPostRequestDto);
         return ResponseEntity.ok(new Message(StatusCode.OK));
     }
+    @GetMapping
+    public ResponseEntity<Message>  getAllFeedback() {
+        return ResponseEntity.ok(new Message(StatusCode.OK, feedbackService.getFeedback()));
+    }
 }
 
