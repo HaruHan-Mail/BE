@@ -89,4 +89,12 @@ public class ContentServiceImpl implements ContentService {
                 splitByNewLine(content.getAdditional_resources())
         );
     }
+
+    @Override
+    public ContentResDto getContent(Long contentId) {
+        Content content = contentRepository.findById(contentId)
+                .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND));
+
+        return convertToDto(content);
+    }
 }
