@@ -25,9 +25,13 @@ public class ContentServiceImpl implements ContentService {
     private final ContentRepository contentRepository;
 
     @Override
-    public List<ContentResDto> getUserReceivedContent(String email) {
+    public List<ContentResDto> getUserReceivedContent(String email, String token) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
+
+        if (!user.getToken().equals(token)) {
+            throw new CustomException(StatusCode.INVALID_INPUT); // or TokenMismatch
+        }
 
         Long lastContentId = user.getLastReceivedContentId();
 

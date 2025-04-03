@@ -1,6 +1,5 @@
 package com.haruhan.bookmark.service;
 
-import com.haruhan.bookmark.dto.BookmarkGetReqDto;
 import com.haruhan.bookmark.dto.BookmarkGetResDto;
 import com.haruhan.bookmark.dto.BookmarkReqDto;
 
@@ -12,7 +11,7 @@ public interface BookmarkService {
     //찜했던 컨텐츠 해제하기
     void deleteBookmark(BookmarkReqDto bookmarkReqDto);
     //내가 찜한 컨텐츠 조회하기
-    List<BookmarkGetResDto> getBookmarkContent(BookmarkGetReqDto bookmarkGetReqDto);
+    List<BookmarkGetResDto> getBookmarkContent(String email, String token);
     //내가 이미 찜한 컨텐츠인지 확인하기
     boolean isBookmarked(BookmarkReqDto bookmarkReqDto);
 }
