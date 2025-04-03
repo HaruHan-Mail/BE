@@ -1,19 +1,9 @@
 package com.haruhan.bookmark.service;
 
-import com.haruhan.bookmark.dto.BookmarkReqDto;
-import com.haruhan.bookmark.entity.Bookmark;
-import com.haruhan.bookmark.entity.BookmarkId;
 import com.haruhan.bookmark.repository.BookmarkRepository;
-import com.haruhan.common.error.CustomException;
-import com.haruhan.common.error.StatusCode;
-import com.haruhan.common.error.entity.Content;
-import com.haruhan.common.error.repository.ContentRepository;
-import com.haruhan.user.entity.PreferedTime;
-import com.haruhan.user.entity.User;
+import com.haruhan.content.repository.ContentRepository;
 import com.haruhan.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,8 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)

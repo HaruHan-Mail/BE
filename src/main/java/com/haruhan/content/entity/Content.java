@@ -1,8 +1,7 @@
-package com.haruhan.common.error.entity;
+package com.haruhan.content.entity;
 
 import com.haruhan.bookmark.entity.Bookmark;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

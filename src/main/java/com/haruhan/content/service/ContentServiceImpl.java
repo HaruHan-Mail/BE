@@ -2,8 +2,8 @@ package com.haruhan.content.service;
 
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
-import com.haruhan.common.error.entity.Content;
-import com.haruhan.common.error.repository.ContentRepository;
+import com.haruhan.content.entity.Content;
+import com.haruhan.content.repository.ContentRepository;
 import com.haruhan.content.dto.ContentResDto;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;

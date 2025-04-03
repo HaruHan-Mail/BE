@@ -1,6 +1,6 @@
 package com.haruhan.bookmark.entity;
 
-import com.haruhan.common.error.entity.Content;
+import com.haruhan.content.entity.Content;
 import com.haruhan.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
