@@ -19,9 +19,12 @@ public class ContentController {
 
     private final ContentService contentService;
 
-    @GetMapping("/mine/{email}")
-    public ResponseEntity<Message> getUserReceivedContent(@PathVariable String email) {
-        List<ContentResDto> contentList = contentService.getUserReceivedContent(email);
+    @GetMapping("/mine")
+    public ResponseEntity<Message> getUserReceivedContent(
+            @RequestParam String email,
+            @RequestParam String token
+    ) {
+        List<ContentResDto> contentList = contentService.getUserReceivedContent(email, token);
         return ResponseEntity.ok(new Message(StatusCode.OK, contentList));
     }
 
