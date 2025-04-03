@@ -15,6 +15,7 @@ public enum StatusCode {
     INVALID_VERIFICATION_CODE(400, "인증번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
     INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.", HttpStatus.INTERNAL_SERVER_ERROR),
     NOT_EXIST_ADMIN_CODE(400,"관리자 코드가 존재하지 않습니다.",HttpStatus.BAD_REQUEST),
+    CREATED(201, "콘텐츠가 성공적으로 생성되었습니다.", HttpStatus.CREATED),
     INVALID_ADMIN_CODE(400,"관리자 코드가 일치하지 않습니다.",HttpStatus.BAD_REQUEST);
 
     private final int statusCode;

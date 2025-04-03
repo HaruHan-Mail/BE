@@ -2,6 +2,7 @@ package com.haruhan.content.controller;
 
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.common.error.dto.Message;
+import com.haruhan.content.dto.ContentReqDto;
 import com.haruhan.content.dto.ContentResDto;
 import com.haruhan.content.service.ContentService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,11 @@ public class ContentController {
     public ResponseEntity<Message> getContent(@PathVariable Long contentId) {
         ContentResDto content = contentService.getContent(contentId);
         return ResponseEntity.ok(new Message(StatusCode.OK, content));
+    }
+
+    @PostMapping
+    public ResponseEntity<Message> createContent(@RequestBody ContentReqDto dto) {
+        ContentResDto content = contentService.createContent(dto);
+        return ResponseEntity.ok(new Message(StatusCode.CREATED, content));
     }
 }
