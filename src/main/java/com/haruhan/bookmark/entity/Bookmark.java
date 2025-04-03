@@ -28,7 +28,7 @@ public class Bookmark {
     private Content content;
 
     public Bookmark(User user, Content content) {
-        this.bookmarkId = new BookmarkId(user.getUserId(), content.getContent_id());
+        this.bookmarkId = new BookmarkId(user.getUserId(), content.getContentId());
         this.user = user;
         this.content = content;
     }

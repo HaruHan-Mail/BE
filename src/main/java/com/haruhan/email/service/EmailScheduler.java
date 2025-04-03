@@ -2,10 +2,12 @@ package com.haruhan.email.service;
 
 import com.haruhan.content.entity.Content;
 import com.haruhan.content.repository.ContentRepository;
+import com.haruhan.user.entity.PreferedTime;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -21,31 +23,31 @@ public class EmailScheduler {
     private final ContentRepository contentRepository;
     private final EmailService emailService;
 
-//    @Scheduled(cron = "0 0 7 * * MON-FRI") // 오전 7시
-//    public void sendMorningEmails() {
-//        sendEmailsForTime(PreferedTime.MORNING);
-//    }
-//
-//    @Scheduled(cron = "0 0 12 * * MON-FRI") // 오후 12시
-//    public void sendAfternoonEmails() {
-//        sendEmailsForTime(PreferedTime.AFTERNOON);
-//    }
-//
-//    @Scheduled(cron = "0 0 18 * * MON-FRI") // 오후 6시
-//    public void sendEveningEmails() {
-//        sendEmailsForTime(PreferedTime.EVENING);
-//    }
-//
-//    private void sendEmailsForTime(PreferedTime time) {
-//        List<User> users = userRepository.findAllByPreferedTime(time); // 시간에 맞는 설정 값을 선택한 유저를 찾음
-//        for (User user : users) {
-//            List<Content> contents = getNextContents(user);
-//            if (!contents.isEmpty()) {
-//                emailService.sendContentEmail(user.getEmail());
-//                updateUserLastContent(user, contents);
-//            }
-//        }
-//    }
+    @Scheduled(cron = "0 0 7 * * MON-FRI") // 오전 7시
+    public void sendMorningEmails() {
+        sendEmailsForTime(PreferedTime.MORNING);
+    }
+
+    @Scheduled(cron = "0 0 12 * * MON-FRI") // 오후 12시
+    public void sendAfternoonEmails() {
+        sendEmailsForTime(PreferedTime.AFTERNOON);
+    }
+
+    @Scheduled(cron = "0 0 18 * * MON-FRI") // 오후 6시
+    public void sendEveningEmails() {
+        sendEmailsForTime(PreferedTime.EVENING);
+    }
+
+    private void sendEmailsForTime(PreferedTime time) {
+        List<User> users = userRepository.findAllByPreferedTime(time); // 시간에 맞는 설정 값을 선택한 유저를 찾음
+        for (User user : users) {
+            List<Content> contents = getNextContents(user);
+            for (Content content : contents) {
+                emailService.sendContentEmail(user.getEmail(), content);
+                updateUserLastContent(user, contents);
+            }
+        }
+    }
 
     private List<Content> getNextContents(User user) {
         if (user.getIsDaily()) { // 매일 컨텐츠를 받고 싶은 사람일 경우
@@ -57,7 +59,7 @@ public class EmailScheduler {
     }
 
     private void updateUserLastContent(User user, List<Content> sentContents) {
-        Long lastId = sentContents.get(sentContents.size() - 1).getContent_id();
+        Long lastId = sentContents.get(sentContents.size() - 1).getContentId();
         user.setLastReceivedContentId(lastId);
         userRepository.save(user);
     }

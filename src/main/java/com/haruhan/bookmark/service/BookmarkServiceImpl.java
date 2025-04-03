@@ -89,13 +89,13 @@ public class BookmarkServiceImpl implements BookmarkService {
         // Bookmark를 DTO로 변환 후 반환
         return bookmarks.stream()
                 .map(bookmark -> new BookmarkGetResDto(
-                        bookmark.getContent().getContent_id(),
+                        bookmark.getContent().getContentId(),
                         bookmark.getContent().getTitle(),
                         bookmark.getContent().getSummary(),
                         splitByNewLine(bookmark.getContent().getBackground()),
                         splitByNewLine(bookmark.getContent().getImportance()),
                         splitByNewLine(bookmark.getContent().getTip()),
-                        splitByNewLine(bookmark.getContent().getAdditional_resources())
+                        splitByNewLine(bookmark.getContent().getAdditionalResources())
                 )).collect(Collectors.toList());
     }
 

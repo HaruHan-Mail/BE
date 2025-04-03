@@ -33,7 +33,7 @@ public class EmailService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
         Context  context = new Context();
         context.setVariable("title", content.getTitle());
-        context.setVariable("content_id", content.getContent_id());
+        context.setVariable("content_id", content.getContentId());
         context.setVariable("email", email);
         context.setVariable("token", user.getToken());
         String htmlContent = templateEngine.process("question-email", context);

@@ -20,7 +20,7 @@ public class EmailController {
 
     @PostMapping("/{email}")
     public ResponseEntity<Message> sendEmail(@PathVariable String email) {
-        Content sampleContent = contentRepository.findByContent_id(1L);
+        Content sampleContent = contentRepository.findByContentId(6L);
         emailService.sendContentEmail(email, sampleContent);
         return ResponseEntity.ok(new Message(StatusCode.OK));
     }

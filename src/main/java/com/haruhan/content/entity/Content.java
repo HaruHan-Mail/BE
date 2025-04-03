@@ -15,7 +15,7 @@ public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "content_id", nullable = false)
-    private Long content_id;
+    private Long contentId;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -33,10 +33,10 @@ public class Content {
     private String tip;
 
     @Column(name = "additional_resources", nullable = false)
-    private String additional_resources;
+    private String additionalResources;
 
     @Column(name = "bookmark_count", nullable = false)
-    private int bookmark_count = 0;
+    private int bookmarkCount = 0;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
     //orphanRemoval : 연결이 끊어진(null이 된) 북마크 엔티티를 자동 삭제
@@ -48,16 +48,16 @@ public class Content {
         this.background = background;
         this.importance = importance;
         this.tip = tip;
-        this.additional_resources = additional_resources;
+        this.additionalResources = additional_resources;
     }
 
     public void increaseBookmarkCount() {
-        this.bookmark_count++;
+        this.bookmarkCount++;
     }
 
     public void decreaseBookmarkCount() {
-        if(this.bookmark_count > 0){
-            this.bookmark_count--;
+        if(this.bookmarkCount > 0){
+            this.bookmarkCount--;
         }
     }
 }

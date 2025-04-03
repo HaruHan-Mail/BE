@@ -18,18 +18,18 @@
         <p style="font-size:17px;line-height:1.7;margin-bottom:30px;color:#555;font-size: large;" th:text="${title}">
             오늘의 질문 제목
         </p>
-        <a th:href="@{https://haruhan.com/question/{id}(id=${content_id})}"
+        <a th:href="@{https://haruhan.site/question/{id}(id=${content_id})}"
            style="display:inline-block;padding:14px 32px;background-color:#e86912;color:#ffffff;border-radius:8px;text-decoration:none;font-weight:bold;transition:background-color 0.3s ease;">
             자세히 보기
         </a>
     </div>
 
     <div style="margin-top:30px;text-align:center;font-size:14px;color:#aaa;border-top:1px solid #eee;padding-top:20px;">
-        <a th:href="@{https://haruhan.com/questions/mine(email=${email})}" style="color:#aaa;margin:0 12px;text-decoration:none;">나의 질문</a>
+        <a th:href="@{https://haruhan.site/questions/mine(email=${email})}" style="color:#aaa;margin:0 12px;text-decoration:none;">나의 질문</a>
         |
-        <a th:href="@{https://haruhan.com/settings(email=${email}, token=${token})}" style="color:#aaa;margin:0 12px;text-decoration:none;">설정</a>
+        <a th:href="@{https://haruhan.site/setting(email=${email}, token=${token})}" style="color:#aaa;margin:0 12px;text-decoration:none;">설정</a>
         |
-        <a th:href="@{https://haruhan.com/unsubscribe(email=${email}, token=${token})}" style="color:#aaa;margin:0 12px;text-decoration:none;">구독 해지</a>
+        <a th:href="@{https://haruhan.site/unsubscribe(email=${email}, token=${token})}" style="color:#aaa;margin:0 12px;text-decoration:none;">구독 해지</a>
     </div>
 
 </div>

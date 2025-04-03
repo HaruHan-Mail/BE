@@ -2,8 +2,8 @@ package com.haruhan.content.service;
 
 import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
-import com.haruhan.common.error.entity.Content;
-import com.haruhan.common.error.repository.ContentRepository;
+import com.haruhan.content.entity.Content;
+import com.haruhan.content.dto.ContentReqDto;
 import com.haruhan.content.dto.ContentResDto;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class ContentServiceImpl implements ContentService {
 
     private final UserRepository userRepository;
-    private final ContentRepository contentRepository;
+    private final com.haruhan.content.repository.ContentRepository contentRepository;
 
     @Override
     public List<ContentResDto> getUserReceivedContent(String email) {
@@ -79,13 +79,13 @@ public class ContentServiceImpl implements ContentService {
     //Content -> ContentResDto 변환
     private ContentResDto convertToDto(Content content) {
         return new ContentResDto(
-                content.getContent_id(),
+                content.getContentId(),
                 content.getTitle(),
                 content.getSummary(),
                 splitByNewLine(content.getBackground()),
                 splitByNewLine(content.getImportance()),
                 splitByNewLine(content.getTip()),
-                splitByNewLine(content.getAdditional_resources())
+                splitByNewLine(content.getAdditionalResources())
         );
     }
 
