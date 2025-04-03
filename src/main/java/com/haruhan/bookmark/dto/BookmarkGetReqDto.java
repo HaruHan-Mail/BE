@@ -1,7 +1,8 @@
 package com.haruhan.bookmark.dto;
 
 public record BookmarkGetReqDto(
-        String userEmail,
+        String email,
         String token
 ) {
 }
+
