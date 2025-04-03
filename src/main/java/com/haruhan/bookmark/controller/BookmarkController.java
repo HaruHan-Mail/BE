@@ -1,6 +1,5 @@
 package com.haruhan.bookmark.controller;
 
-import com.haruhan.bookmark.dto.BookmarkGetReqDto;
 import com.haruhan.bookmark.dto.BookmarkReqDto;
 import com.haruhan.bookmark.service.BookmarkService;
 import com.haruhan.common.error.StatusCode;
@@ -30,8 +29,8 @@ public class BookmarkController {
     }
 
     @GetMapping
-    public ResponseEntity<Message> getAllBookmarks(@RequestBody BookmarkGetReqDto bookmarkGetReqDto) {
-        return ResponseEntity.ok(new Message(StatusCode.OK, bookmarkService.getBookmarkContent(bookmarkGetReqDto)));
+    public ResponseEntity<Message> getAllBookmarks(@RequestParam String email, @RequestParam String token) {
+        return ResponseEntity.ok(new Message(StatusCode.OK, bookmarkService.getBookmarkContent(email, token)));
     }
 
     @GetMapping("/checking")

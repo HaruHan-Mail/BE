@@ -1,6 +1,5 @@
 package com.haruhan.bookmark.service;
 
-import com.haruhan.bookmark.dto.BookmarkGetReqDto;
 import com.haruhan.bookmark.dto.BookmarkGetResDto;
 import com.haruhan.bookmark.dto.BookmarkReqDto;
 import com.haruhan.bookmark.entity.Bookmark;
@@ -75,10 +74,14 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public List<BookmarkGetResDto> getBookmarkContent(BookmarkGetReqDto bookmarkGetReqDto) {
-        // 이메일로 사용자 찾기
-        User user = userRepository.findByToken(bookmarkGetReqDto.token())
+    public List<BookmarkGetResDto> getBookmarkContent(String email, String token) {
+        // 토큰으로 사용자 찾기
+        User user = userRepository.findByToken(token)
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
+
+        if (!user.getEmail().equals(email)) {
+            throw new CustomException(StatusCode.INVALID_INPUT);
+        }
 
         // 사용자의 찜한 지식 목록 가져오기
         List<Bookmark> bookmarks = bookmarkRepository.findByUser(user);
