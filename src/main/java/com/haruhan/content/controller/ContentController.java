@@ -29,4 +29,10 @@ public class ContentController {
         List<ContentResDto> top5Content = contentService.getTop5BookmarkedContent();
         return ResponseEntity.ok(new Message(StatusCode.OK, top5Content));
     }
+
+    @GetMapping("/{contentId}")
+    public ResponseEntity<Message> getContent(@PathVariable Long contentId) {
+        ContentResDto content = contentService.getContent(contentId);
+        return ResponseEntity.ok(new Message(StatusCode.OK, content));
+    }
 }
