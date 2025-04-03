@@ -35,4 +35,10 @@ public class ContentController {
         ContentResDto content = contentService.getContent(contentId);
         return ResponseEntity.ok(new Message(StatusCode.OK, content));
     }
+    
+    @PostMapping
+    public ResponseEntity<Message> createContent(@RequestBody ContentReqDto dto) {
+        ContentResDto content = contentService.createContent(dto);
+        return ResponseEntity.ok(new Message(StatusCode.CREATED, content));
+    }
 }
