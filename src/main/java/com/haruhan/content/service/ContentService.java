@@ -11,4 +11,6 @@ public interface ContentService {
     List<ContentResDto> getTop5BookmarkedContent();
 
     ContentResDto getContent(Long contentId);
+  
+    ContentResDto createContent(ContentReqDto dto);
 }

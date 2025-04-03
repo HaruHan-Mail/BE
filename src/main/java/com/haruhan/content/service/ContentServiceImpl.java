@@ -4,6 +4,7 @@ import com.haruhan.common.error.CustomException;
 import com.haruhan.common.error.StatusCode;
 import com.haruhan.common.error.entity.Content;
 import com.haruhan.common.error.repository.ContentRepository;
+import com.haruhan.content.dto.ContentReqDto;
 import com.haruhan.content.dto.ContentResDto;
 import com.haruhan.user.entity.User;
 import com.haruhan.user.repository.UserRepository;
@@ -49,6 +50,21 @@ public class ContentServiceImpl implements ContentService {
         return top5Content.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public ContentResDto createContent(ContentReqDto dto) {
+        Content content = new Content(
+                dto.title(),
+                dto.summary(),
+                String.join("\n", dto.background()),
+                String.join("\n", dto.importance()),
+                String.join("\n", dto.tip()),
+                String.join("\n", dto.additionalResources())
+        );
+
+        Content saved = contentRepository.save(content);
+        return convertToDto(saved);
     }
 
 
