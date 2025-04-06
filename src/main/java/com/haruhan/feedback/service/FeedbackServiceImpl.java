@@ -33,9 +33,9 @@ public class FeedbackServiceImpl implements FeedbackService{
         List<Feedback> feedbackList = feedbackRepository.findAll();
         return feedbackList.stream()
                 .map(feedback -> new FeedbackGetResDto(
-                        feedback.getFeedback_id(),
-                        feedback.getFeedback_content(),
-                        feedback.getCreate_at()
+                        feedback.getFeedbackId(),
+                        feedback.getFeedbackContent(),
+                        feedback.getCreateAt()
                 )).toList();
     }
 }

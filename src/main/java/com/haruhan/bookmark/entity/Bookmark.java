@@ -1,6 +1,6 @@
 package com.haruhan.bookmark.entity;
 
-import com.haruhan.common.error.entity.Content;
+import com.haruhan.content.entity.Content;
 import com.haruhan.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class Bookmark {
     private Content content;
 
     public Bookmark(User user, Content content) {
-        this.bookmarkId = new BookmarkId(user.getUserId(), content.getContent_id());
+        this.bookmarkId = new BookmarkId(user.getUserId(), content.getContentId());
         this.user = user;
         this.content = content;
     }

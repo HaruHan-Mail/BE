@@ -29,10 +29,11 @@ public class EmailService {
     private static final String FROM = "no-reply@haruhan.site"; // SES에 등록된 발신자 이메일
     private static final long EXPIRATION_TIME = 5; // 인증번호 만료 시간 (5분)
 
-    public void sendQuestionEmail(String email) {
+    public void sendContentEmail(String email, com.haruhan.content.entity.Content content) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
         Context  context = new Context();
-        context.setVariable("tmp", "박재홍홍홍");
+        context.setVariable("title", content.getTitle());
+        context.setVariable("content_id", content.getContentId());
         context.setVariable("email", email);
         context.setVariable("token", user.getToken());
         String htmlContent = templateEngine.process("question-email", context);
