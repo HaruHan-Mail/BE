@@ -47,7 +47,7 @@ public class EmailService {
                                         .withData(htmlContent)))
                         .withSubject(new Content()
                                 .withCharset("UTF-8")
-                                .withData("김치찌개 끓이는 방법(재홍 쉐프.ver)")))
+                                .withData(content.getTitle())))
                 .withSource(FROM);
 
         amazonSimpleEmailService.sendEmail(request);
