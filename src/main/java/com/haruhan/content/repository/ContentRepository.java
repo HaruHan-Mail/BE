@@ -10,7 +10,7 @@ import java.util.List;
 public interface ContentRepository extends JpaRepository<Content, Long> {
     Content findByContentId(Long content_id);
 
-    @Query("SELECT c FROM Content c ORDER BY c.bookmarkCount DESC LIMIT 3")
+    @Query("SELECT c FROM Content c ORDER BY c.bookmarkCount DESC LIMIT 5")
     List<Content> findTop5ByBookmarkCount();
 
     @Query("SELECT c FROM Content c WHERE c.contentId <= :end ORDER BY c.contentId ASC")
