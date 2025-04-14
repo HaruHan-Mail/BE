@@ -31,7 +31,7 @@ public class EmailService {
 
     public void sendContentEmail(String email, com.haruhan.content.entity.Content content) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
-        Context  context = new Context();
+        Context context = new Context();
         context.setVariable("title", content.getTitle());
         context.setVariable("content_id", content.getContentId());
         context.setVariable("email", email);
@@ -52,6 +52,29 @@ public class EmailService {
 
         amazonSimpleEmailService.sendEmail(request);
         log.info("Sent question email to: {}", email);
+    }
+    public void sendWelcomeEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
+        Context context = new Context();
+        context.setVariable("email", email);
+        context.setVariable("user_id", user.getUserId());
+        context.setVariable("token", user.getToken());
+        context.setVariable("prefered_time", user.getPreferedTime());
+        String htmlContent = templateEngine.process("welcome-email", context);
+
+        SendEmailRequest request = new SendEmailRequest()
+                .withDestination(new Destination().withToAddresses(email))
+                .withMessage(new Message()
+                        .withBody(new Body()
+                                .withHtml(new Content()
+                                        .withCharset("UTF-8")
+                                        .withData(htmlContent)))
+                        .withSubject(new Content()
+                                .withCharset("UTF-8")
+                                .withData("Haruhan 지식 구독을 환영합니다!!")))
+                .withSource(FROM);
+        amazonSimpleEmailService.sendEmail(request);
+        log.info("Sent welcome email to: {}", email);
     }
 
     public void sendVerificationEmail(String email) {

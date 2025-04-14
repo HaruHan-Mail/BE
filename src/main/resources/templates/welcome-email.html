@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>haruhan - 환영합니다!</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f0f4f8;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#333;">
+<div style="max-width:600px;margin:40px auto;background-color:#ffffff;padding:20px;border-radius:12px;box-shadow:0 6px 12px rgba(0,0,0,0.08);">
+
+  <div style="text-align:center;border-bottom:2px solid #e86912;padding-bottom:15px;">
+    <img src="https://haruhan.s3.ap-northeast-2.amazonaws.com/HaruhanLogo.png" alt="haruhan 로고" style="width:140px;margin-bottom:10px;"/>
+  </div>
+
+  <div style="padding:30px;text-align:center;">
+    <h2 style="font-size:22px;margin-bottom:16px;color:#444;">🎉 환영합니다!</h2>
+    <p style="font-size:17px;line-height:1.7;margin-bottom:20px;color:#555;font-size: large;">
+      <span th:text="${email}"></span>님, <br/><b>Haruhan</b>에 오신 것을 진심으로 환영합니다!
+    </p>
+    <p style="font-size:16px;color:#777;margin-bottom:30px;">
+      당신은 <strong th:text="${user_id}"></strong>번째 사용자입니다 🎊<br/>
+      이제부터 매일 한 가지 지식을 받아보실 수 있어요!
+    </p>
+    <p style="font-size:15px;color:#888;">
+        선호 시간: <strong th:text="${prefered_time}"></strong><br/>
+      </p>
+  </div>
+
+  <div style="margin-top:30px;text-align:center;font-size:14px;color:#aaa;border-top:1px solid #eee;padding-top:20px;">
+    <a th:href="@{https://haruhan.com/setting(email=${email}, token=${token})}" style="color:#aaa;margin:0 12px;text-decoration:none;">설정</a>
+    |
+    <a th:href="@{https://haruhan.com/unsubscribe(email=${email}, token=${token})}" style="color:#aaa;margin:0 12px;text-decoration:none;">구독 해지</a>
+  </div>
+
+</div>
+</body>
+</html>
