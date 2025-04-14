@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
         // 새 사용자 추가
         User user = new User(userConfirmRequestDto.email(), userConfirmRequestDto.preferedTime(), userConfirmRequestDto.isDaily());
         userRepository.save(user);
+        emailService.sendWelcomeEmail(userConfirmRequestDto.email());
     }
 
     @Override
