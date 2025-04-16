@@ -26,7 +26,7 @@ public class EmailService {
     private final RedisTemplate<String, String> redisTemplate;
     private final UserRepository userRepository;
 
-    private static final String FROM = "no-reply@haruhan.site"; // SES에 등록된 발신자 이메일
+    private static final String FROM = "Haruhan 지식 <no-reply@haruhan.site>"; // SES에 등록된 발신자 이메일
     private static final long EXPIRATION_TIME = 5; // 인증번호 만료 시간 (5분)
 
     public void sendContentEmail(String email, com.haruhan.content.entity.Content content) {
