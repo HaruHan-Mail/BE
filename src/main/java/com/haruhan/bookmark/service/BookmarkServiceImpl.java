@@ -75,6 +75,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     public List<BookmarkGetResDto> getBookmarkContent(String email, String token) {
+        // 토큰으로 사용자 찾기
         User user = userRepository.findByToken(token)
                 .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_USER));
 
@@ -82,8 +83,10 @@ public class BookmarkServiceImpl implements BookmarkService {
             throw new CustomException(StatusCode.INVALID_INPUT);
         }
 
+        // 사용자의 북마크 목록 조회
         List<Bookmark> bookmarks = bookmarkRepository.findByUserFetchContent(user);
 
+        // Bookmark를 DTO로 변환 후 반환
         return bookmarks.stream()
                 .map(bookmark -> new BookmarkGetResDto(
                         bookmark.getContent().getContentId(),
