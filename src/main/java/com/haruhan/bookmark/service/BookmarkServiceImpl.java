@@ -85,9 +85,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
         // 사용자의 찜한 지식 목록 가져오기
         List<Bookmark> bookmarks = bookmarkRepository.findByUser(user);
-        if (bookmarks.isEmpty()) {
-            throw new CustomException(StatusCode.NOT_EXIST);
-        }
+
 
         // Bookmark를 DTO로 변환 후 반환
         return bookmarks.stream()
