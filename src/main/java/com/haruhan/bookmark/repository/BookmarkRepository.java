@@ -13,5 +13,7 @@ import java.util.List;
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     boolean existsByBookmarkId(BookmarkId bookmarkId);
-    List<Bookmark> findByUser(User user);
+
+    @Query("SELECT b FROM Bookmark b JOIN FETCH b.content WHERE b.user = :user")
+    List<Bookmark> findByUserFetchContent(@Param("user") User user);
 }
