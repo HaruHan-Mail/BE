@@ -70,6 +70,30 @@ public class ContentServiceImpl implements ContentService {
         return convertToDto(saved);
     }
 
+    @Override
+    public ContentResDto updateContent(Long contentId, ContentReqDto contentReqDto) {
+        Content content = contentRepository.findByContentId(contentId);
+
+        content.updateContent(
+                contentReqDto.title(),
+                contentReqDto.summary(),
+                String.join("\n", contentReqDto.background()),
+                String.join("\n", contentReqDto.importance()),
+                String.join("\n", contentReqDto.tip()),
+                String.join("\n", contentReqDto.additionalResources())
+        );
+        return convertToDto(content);
+    }
+
+    @Override
+    public List<ContentResDto> getAllContents() {
+        List<Content> contentList = contentRepository.findAll();
+
+        return contentList.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
 
     //문자열을 줄바꿈 기준으로 분리하여 리스트로 변환
     private List<String> splitByNewLine(String text) {

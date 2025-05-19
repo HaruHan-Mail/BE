@@ -45,4 +45,16 @@ public class ContentController {
         ContentResDto content = contentService.createContent(dto);
         return ResponseEntity.ok(new Message(StatusCode.CREATED, content));
     }
+
+    @PutMapping("/{contentId}")
+    public ResponseEntity<Message> updateContent(@PathVariable Long contentId ,@RequestBody ContentReqDto contentReqDto) {
+        ContentResDto content = contentService.updateContent(contentId, contentReqDto);
+        return ResponseEntity.ok(new Message(StatusCode.OK, content));
+    }
+
+    @GetMapping
+    public ResponseEntity<Message> getAllContents() {
+        List<ContentResDto> contentsList = contentService.getAllContents();
+        return ResponseEntity.ok(new Message(StatusCode.OK, contentsList));
+    }
 }

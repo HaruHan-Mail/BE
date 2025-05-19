@@ -60,4 +60,21 @@ public class Content {
             this.bookmarkCount--;
         }
     }
+    public void updateContent(
+            String title,
+            String summary,
+            String background,
+            String importance,
+            String tip,
+            String additionalResources) {
+
+        this.title = title;
+        this.summary = summary;
+        this.background = background;
+        this.importance = importance;
+        this.tip = tip;
+        this.additionalResources = additionalResources;
+    }
+
+
 }

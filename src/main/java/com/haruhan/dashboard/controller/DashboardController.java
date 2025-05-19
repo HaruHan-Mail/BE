@@ -24,4 +24,6 @@ public class DashboardController {
         DashboardResDto dashboardResDto = dashboardService.getDashboardInfo();
         return ResponseEntity.ok(new Message(StatusCode.OK, dashboardResDto));
     }
+
+
 }
