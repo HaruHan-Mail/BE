@@ -6,6 +6,9 @@ server:
       protocol-header: x-forwarded-proto
 
 spring:
+  profiles:
+    active: dev
+
   application:
     name: haruhan-mail
 
@@ -41,5 +44,4 @@ aws:
     access-key: ${AWS_ACCESS_KEY}
     secret-key: ${AWS_SECRET_KEY}
 
-profiles:
-  active: dev
+

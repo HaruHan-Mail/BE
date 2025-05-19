@@ -14,4 +14,8 @@ public interface ContentService {
     ContentResDto getContent(Long contentId);
 
     ContentResDto createContent(ContentReqDto dto);
+
+    ContentResDto updateContent(Long contentId, ContentReqDto dto);
+
+    List<ContentResDto> getAllContents();
 }
