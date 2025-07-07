@@ -1,8 +1,9 @@
 package com.haruhan.dashboard.dto;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
-public record DashboardResDto (
-        List<DashboardUserDto> users,
-        List<DashboardContentDto> contents
-) {}
+public record DashboardResDto(
+        Page<DashboardUserDto> users,
+        Page<DashboardContentDto> contents
+) {
+}
